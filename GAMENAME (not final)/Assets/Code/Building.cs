@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public interface Building : MonoBehaviour
 {
-
-
-    //public virtual void   
+    int getHp();
+    Resource upkeep();
+    Resource yield();
 }
