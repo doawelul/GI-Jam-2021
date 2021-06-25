@@ -8,24 +8,33 @@ public class MapManager : MonoBehaviour
     private int totalStone;
     private int totalGold;
     
-
-
-
+        
     private class Grid
     {
+        private static readonly Tile.TileType G = Tile.TileType.GRASS;
+        private static readonly Tile.TileType D = Tile.TileType.DEEP;
+        private static readonly Tile.TileType S = Tile.TileType.SAND;
+        private static readonly Tile.TileType R = Tile.TileType.ROCK;
+        private static readonly Tile.TileType W = Tile.TileType.WATER;
+
+private Tile.TileType[,] tiles = new Tile.TileType[,]
+        { {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G},
+        {G, G, G, G, G, G, G, G, G, G}};
+
+
+
+
+
         private const int ROW = 10;
         private const int COL = 10;
-        private char[,] tiles = new char[,]
-        {{'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
-        {'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'}};
         private Tile[,] gridData = new Tile[ROW, COL];
 
         public Grid()
@@ -41,7 +50,7 @@ public class MapManager : MonoBehaviour
             return this.gridData[row, col];
         }
 
-        public void setTile(int row, int col, char type) {
+        public void setTile(int row, int col, Tile.TileType type) {
             this.gridData[row, col] = new Tile(type);
         }
     }

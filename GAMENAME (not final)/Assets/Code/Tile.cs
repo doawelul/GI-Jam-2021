@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private char groundType;
+    public enum TileType {
+        DEEP,
+        WATER,
+        ROCK,
+        GRASS,
+        SAND
+    }
+    private TileType groundType;
     private Building buildingType;
 
-    public Tile(char name) {
+    public Tile(TileType name) {
         groundType = name;
         buildingType = null;
     }
 
-    public char getGroundType() {
+    public TileType getGroundType() {
         return groundType;
     }
 
@@ -21,10 +27,26 @@ public class Tile : MonoBehaviour
         return this.buildingType;
     }
 
-    public void setBuilding(char name) {
-        this.buildingType = new Building();
+    public void setFarm() {
+        this.buildingType = new Farm(groundType);
     }
- 
+
+    public void setCastle() {
+        this.buildingType = new Castle(groundType);
+    }
+
+    public void setBank() {
+        this.buildingType = new Bank(groundType);
+    }
+
+    public void setMine() {
+        this.buildingType = new Mine(groundType);
+    }
+
+    public void setRoad() {
+        this.buildingType = new Road(groundType);
+    }
+
 
 
     void Start()
