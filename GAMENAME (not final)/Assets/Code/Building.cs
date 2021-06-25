@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Building : MonoBehaviour
+public interface Building
 {
     int getHp();
     Resource upkeep();

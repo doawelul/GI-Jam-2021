@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : Building
+public class Road : MonoBehaviour, Building
 {
     private int hp;
-    private Tile tile;
-    public Road(Tile tile) {
+    private readonly Tile.TileType tile;
+    public Road(Tile.TileType tile) {
         this.tile = tile;
         hp = 5;
     }
@@ -17,7 +17,6 @@ public class Road : Building
         return new Resource(3, Resource.ResourceType.WOOD);
     }
     public Resource yield() {
-        return noResource();
+        return Resource.noResource();
     }
-
 }
