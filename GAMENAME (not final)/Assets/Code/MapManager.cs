@@ -16,34 +16,29 @@ public class MapManager : MonoBehaviour
         private static readonly Tile.TileType S = Tile.TileType.SAND;
         private static readonly Tile.TileType R = Tile.TileType.ROCK;
         private static readonly Tile.TileType W = Tile.TileType.WATER;
-
-private Tile.TileType[,] tiles = new Tile.TileType[,]
-        { {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G},
-        {G, G, G, G, G, G, G, G, G, G}};
-
-
-
-
-
+        
         private const int ROW = 10;
         private const int COL = 10;
+        private Tile.TileType[,] tiles = new Tile.TileType[ROW, COL]
+            { {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G},
+            {G, G, G, G, G, G, G, G, G, G}};
+
         private Tile[,] gridData = new Tile[ROW, COL];
 
         public Grid()
         {
             for (int i = 0; i < ROW; ++i)
                 for (int j = 0; j < COL; ++j)
-                    gridData[i, j] = new Tile(tiles[i,j]);
+                    setTile(i, j, tiles[i, j]);
         }
-
 
         public Tile getTile(int row, int col)
         {
@@ -55,7 +50,6 @@ private Tile.TileType[,] tiles = new Tile.TileType[,]
         }
     }
 
-    
 
     void Start()
     {

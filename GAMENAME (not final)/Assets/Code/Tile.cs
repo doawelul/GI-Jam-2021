@@ -14,8 +14,8 @@ public class Tile : MonoBehaviour
     private TileType groundType;
     private Building buildingType;
 
-    public Tile(TileType name) {
-        groundType = name;
+    public Tile(TileType type) {
+        groundType = type;
         buildingType = null;
     }
 
