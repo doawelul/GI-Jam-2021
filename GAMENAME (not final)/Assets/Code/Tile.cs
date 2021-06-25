@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public enum TileType {
+    public enum TileType
+    {
         DEEP,
         WATER,
         ROCK,
@@ -13,50 +14,47 @@ public class Tile : MonoBehaviour
     }
     private TileType groundType;
     private Building buildingType;
+    private GameObject tileSprite;
 
-    public Tile(TileType type) {
+    public Tile(TileType type, GameObject sprite)
+    {
         groundType = type;
+        tileSprite = sprite;
         buildingType = null;
     }
 
-    public TileType getGroundType() {
+    public TileType getGroundType()
+    {
         return groundType;
     }
 
-    public Building getBuilding() {
+    public Building getBuilding()
+    {
         return this.buildingType;
     }
 
-    public void setFarm() {
+    public void setFarm()
+    {
         this.buildingType = new Farm(groundType);
     }
 
-    public void setCastle() {
+    public void setCastle()
+    {
         this.buildingType = new Castle(groundType);
     }
 
-    public void setBank() {
+    public void setBank()
+    {
         this.buildingType = new Bank(groundType);
     }
 
-    public void setMine() {
+    public void setMine()
+    {
         this.buildingType = new Mine(groundType);
     }
 
-    public void setRoad() {
+    public void setRoad()
+    {
         this.buildingType = new Road(groundType);
-    }
-
-
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
