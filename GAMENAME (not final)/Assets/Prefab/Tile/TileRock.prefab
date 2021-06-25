@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2225717587659773969}
   - component: {fileID: 213339690388154403}
   m_Layer: 0
-  m_Name: TileStone
+  m_Name: TileRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

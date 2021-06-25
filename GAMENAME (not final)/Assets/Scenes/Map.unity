@@ -132,9 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426165}
-  - component: {fileID: 3426166}
+  - component: {fileID: 3426167}
   m_Layer: 0
-  m_Name: SceneManger
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3426166
+--- !u!114 &3426167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,12 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1912c89cd2c01824b89fe679fc5a4bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTypes:
-  - {fileID: 1933058514029026973, guid: 05d0b3a42d2ed1c488947fcfdd5487ae, type: 3}
-  - {fileID: 7479906533050386068, guid: e680d13d4e16e9749bcc03edf777c6b3, type: 3}
-  - {fileID: 7542827901665117601, guid: eb71bc9695c117f4ba37d920d99bee6f, type: 3}
-  - {fileID: 7717853817239052077, guid: f258b8f4744315c42a16334f9cd777f5, type: 3}
-  - {fileID: 680840624238720473, guid: dd5cb6ddadefba040ab0920d8c03f109, type: 3}
+  DEEP: {fileID: 1933058514029026973, guid: 05d0b3a42d2ed1c488947fcfdd5487ae, type: 3}
+  WATER: {fileID: 7479906533050386068, guid: e680d13d4e16e9749bcc03edf777c6b3, type: 3}
+  ROCK: {fileID: 7542827901665117601, guid: eb71bc9695c117f4ba37d920d99bee6f, type: 3}
+  GRASS: {fileID: 7717853817239052077, guid: f258b8f4744315c42a16334f9cd777f5, type: 3}
+  SAND: {fileID: 680840624238720473, guid: dd5cb6ddadefba040ab0920d8c03f109, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
