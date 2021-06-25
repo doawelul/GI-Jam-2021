@@ -17,6 +17,6 @@ public class Bank : Building
         return new Resource(5, Resource.ResourceType.GOLD);
     }
     public Resource yield() {
-        return new Resource(9, Resource.ResourceType.GOLD);
+        return new Resource(10, Resource.ResourceType.GOLD);
     }
 }
