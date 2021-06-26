@@ -23,6 +23,7 @@ public class Tile : MonoBehaviour
     private TileType groundType;
     private Building buildingType;
     private GameObject tileSprite;
+    private GameObject buildingSprite;
 
     public Tile(TileType type)
     {
@@ -64,28 +65,55 @@ public class Tile : MonoBehaviour
         return buildingType;
     }
 
-    public void setFarm()
+    public bool CanBuild()
+    {
+        if (groundType == TileType.DEEP || groundType == TileType.WATER)
+            return false;
+        return true;
+    }
+
+    public void setFarm(GameObject g)
     {
         buildingType = new Farm(groundType);
+        buildingSprite = g;
     }
 
-    public void setCastle()
+    public void setCastle(GameObject g)
     {
         buildingType = new Castle(groundType);
+        buildingSprite = g;
     }
 
-    public void setBank()
+    public void setBank(GameObject g)
     {
         buildingType = new Bank(groundType);
+        buildingSprite = g;
     }
 
-    public void setMine()
+    public void setMine(GameObject g)
     {
         buildingType = new Mine(groundType);
+        buildingSprite = g;
     }
 
-    public void setRoad()
+    public void setRoad(GameObject g)
     {
         this.buildingType = new Road(groundType);
+        buildingSprite = g;
+    }
+
+    public int GetGoldChange()
+    {
+        return buildingType.yield().GetGold() - buildingType.upkeep().GetGold();
+    }
+
+    public int GetFoodChange()
+    {
+        return buildingType.yield().GetFood() - buildingType.upkeep().GetFood();
+    }
+
+    public int GetStoneChange()
+    {
+        return buildingType.yield().GetStone() - buildingType.upkeep().GetStone();
     }
 }

@@ -13,52 +13,65 @@ public class Knight : MonoBehaviour, Unit
     private int col;
     private int actions;
     private bool dead;
-    public Knight(int row, int col) {
+    public Knight(int row, int col)
+    {
         this.hp = 5;
         this.row = row;
         this.col = col;
         this.actions = ACTIONS_PER_TURN;
         dead = false;
     }
-    public int getHp() {
+    public int getHp()
+    {
         return hp;
     }
 
-    public int getMoveSpd() {
+    public int getMoveSpd()
+    {
         return MOVE_SPEED;
     }
-    public Resource upkeep() {
+    public Resource upkeep()
+    {
         return new Resource(5, Resource.ResourceType.GOLD);
     }
-    public int getDmg(Unit target) {
+    public int getDmg(Unit target)
+    {
         //if(target.GetType() == typeof(Bandit)) {
         //    return BASE_DAMAGE * 2;
         //} else {
-            return BASE_DAMAGE;
+        return BASE_DAMAGE;
         //}
     }
-    public int getRow() {
+    public int getRow()
+    {
         return row;
     }
-    public int getCol() {
+    public int getCol()
+    {
         return col;
     }
-    public int getRemainingActions() {
+    public int getRemainingActions()
+    {
         return actions;
     }
-    public void refreshActions() {
+    public void refreshActions()
+    {
         actions = ACTIONS_PER_TURN;
     }
-    public void takeDmg(int amt) {
+    public void takeDmg(int amt)
+    {
         hp -= amt;
-        if(hp <= 0) {
+        if (hp <= 0)
+        {
             dead = true;
         }
     }
-    public bool isDead() {
+    public bool isDead()
+    {
         return dead;
     }
-    public void move(int newRow, int newCol) {
+    public void move(int newRow, int newCol)
+    {
         row = newRow;
         col = newCol;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bank : MonoBehaviour, Building
+public class Bank : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
