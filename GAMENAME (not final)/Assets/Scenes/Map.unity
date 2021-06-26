@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1912c89cd2c01824b89fe679fc5a4bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endReason: {fileID: 11400000, guid: c4d3474a705f0e4439a4d4a8b42c71f5, type: 2}
   DEEP: {fileID: 1933058514029026973, guid: 05d0b3a42d2ed1c488947fcfdd5487ae, type: 3}
   WATER: {fileID: 7479906533050386068, guid: e680d13d4e16e9749bcc03edf777c6b3, type: 3}
   ROCK: {fileID: 7542827901665117601, guid: eb71bc9695c117f4ba37d920d99bee6f, type: 3}

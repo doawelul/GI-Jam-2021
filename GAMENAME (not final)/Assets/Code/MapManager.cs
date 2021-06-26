@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
+    public GameOverReason endReason;
     private static string currentBuilding;
 
     private Grid layout;
@@ -55,7 +56,7 @@ public class MapManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            GameOver();
+            GameOver("You have ended the game of your own choosing.");
     }
 
     private void loadTileSprites()
@@ -78,9 +79,10 @@ public class MapManager : MonoBehaviour
         return new Vector2(v3.x, v3.y);
     }
 
-    private void GameOver()
+    private void GameOver(string message)
     {
-        SceneManager.LoadScene(0);
+        endReason.reason = message;
+        SceneManager.LoadScene(2);
     }
 
     private void SetText()
@@ -109,9 +111,12 @@ public class MapManager : MonoBehaviour
         food += foodChange;
         stone += stoneChange;
 
-        if (gold < 0 || food < 0 || stone < 0)
-            GameOver();
-
+        if (gold < 0) 
+            GameOver("You have run out of Gold.");
+        else if(food < 0)
+            GameOver("You have run out of Food.");
+        else if (stone < 0)
+            GameOver("You have run out of Stone.");
         SetText();
     }
 
