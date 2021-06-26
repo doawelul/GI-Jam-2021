@@ -7,6 +7,9 @@ public class MapManager : MonoBehaviour
     private int totalFood;
     private int totalStone;
     private int totalGold;
+    private string currentBuilding;
+    Grid layout;
+
 
     // tile sprites. instantiated from unity side
     public GameObject DEEP;
@@ -14,6 +17,9 @@ public class MapManager : MonoBehaviour
     public GameObject ROCK;
     public GameObject GRASS;
     public GameObject SAND;
+
+    public GameObject[] buildings;
+
 
     private void loadTileSprites() {
         Tile.DEEP_SPRITE = DEEP;
@@ -26,13 +32,14 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         loadTileSprites();
-        Grid layout = new Grid();
+        layout = new Grid(buildings);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log(GridPosition());
+        if (Input.GetMouseButtonDown(0)) {
+            layout.getBuilding((int)GridPosition().x, (int)GridPosition().y, currentBuilding);
+        }
     }
 
     private Vector2 GridPosition()
@@ -66,8 +73,13 @@ public class MapManager : MonoBehaviour
 
         private Tile[,] gridData = new Tile[ROW, COL];
 
-        public Grid()
+
+        private GameObject[] buildings;
+
+
+        public Grid(GameObject[] g)
         {
+            buildings = g;
             for (int i = 0; i < ROW; ++i)
                 for (int j = 0; j < COL; ++j)
                     setTile(i, j, tileTypes[i, j]);
@@ -85,6 +97,26 @@ public class MapManager : MonoBehaviour
             Tile.createGameTile(row, col, createdTile);
         }
 
-        
+       public GameObject getBuilding(int row, int col, string bType) {
+            switch (bType) {
+                case "F":
+                    Instantiate(buildings[0], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    break;
+                case "R":
+                    Instantiate(buildings[1], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    break;
+                case "M":
+                    Instantiate(buildings[2], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    break;
+                case "B":
+                    Instantiate(buildings[3], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    break;
+            }
+            return null;
+        }
     }
+
+    public void buttonSelect(string type) {
+        currentBuilding = type;
+    }    
 }
