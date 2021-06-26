@@ -171,6 +171,7 @@ MonoBehaviour:
   ROCK: {fileID: 7542827901665117601, guid: eb71bc9695c117f4ba37d920d99bee6f, type: 3}
   GRASS: {fileID: 7717853817239052077, guid: f258b8f4744315c42a16334f9cd777f5, type: 3}
   SAND: {fileID: 680840624238720473, guid: dd5cb6ddadefba040ab0920d8c03f109, type: 3}
+  buildings: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
