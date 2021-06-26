@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : MonoBehaviour, Unit
+public class Archer : MonoBehaviour, Unit
 {
 
     private const int MOVE_SPEED = 1;
-    private const int BASE_DAMAGE = 1;
-    private const int ACTIONS_PER_TURN = 2;
+    private const int BASE_DAMAGE = 2;
+    private const int ACTIONS_PER_TURN = 1;
     private int hp;
     private int row;
     private int col;
     private int actions;
     private bool dead;
-    public Knight(int row, int col)
+    public Archer(int row, int col)
     {
-        this.hp = 5;
+        this.hp = 4;
         this.row = row;
         this.col = col;
         this.actions = ACTIONS_PER_TURN;
@@ -32,11 +32,11 @@ public class Knight : MonoBehaviour, Unit
     }
     public Resource upkeep()
     {
-        return new Resource(5, Resource.ResourceType.GOLD);
+        return new Resource(4, Resource.ResourceType.GOLD);
     }
     public int getDmg(Unit target)
     {
-        if(target.GetType() == typeof(Scout)) {
+        if(target.GetType() == typeof(Knight)) {
             return BASE_DAMAGE * 2;
         } else {
             return BASE_DAMAGE;
