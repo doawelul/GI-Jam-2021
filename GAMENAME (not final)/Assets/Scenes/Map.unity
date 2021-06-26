@@ -171,7 +171,17 @@ MonoBehaviour:
   ROCK: {fileID: 7542827901665117601, guid: eb71bc9695c117f4ba37d920d99bee6f, type: 3}
   GRASS: {fileID: 7717853817239052077, guid: f258b8f4744315c42a16334f9cd777f5, type: 3}
   SAND: {fileID: 680840624238720473, guid: dd5cb6ddadefba040ab0920d8c03f109, type: 3}
-  buildings: []
+  CASTLE: {fileID: 3882906875181165729, guid: a3448a22ab07dda48b2e1d403b2b6191, type: 3}
+  FARM: {fileID: 437116212963881884, guid: c516cd17cc2d42c41a5b17a7df0f5ff4, type: 3}
+  MINE: {fileID: 3132135378801633926, guid: d558a6e3ac40be849b07eac7ca0f7358, type: 3}
+  BANK: {fileID: 4359849534463067017, guid: e101b6102e1d4d84d80b2d7ec93808a4, type: 3}
+  ROAD: {fileID: 1189390882821704732, guid: 129233cb8abec424a858748c36703119, type: 3}
+  buildings:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

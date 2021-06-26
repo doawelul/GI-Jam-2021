@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    private int totalFood;
-    private int totalStone;
-    private int totalGold;
     private string currentBuilding;
     Grid layout;
-
 
     // tile sprites. instantiated from unity side
     public GameObject DEEP;
@@ -18,8 +14,13 @@ public class MapManager : MonoBehaviour
     public GameObject GRASS;
     public GameObject SAND;
 
-    public GameObject[] buildings;
+    public GameObject CASTLE;
+    public GameObject FARM;
+    public GameObject MINE;
+    public GameObject BANK;
+    public GameObject ROAD;
 
+    public GameObject[] buildings;
 
     private void loadTileSprites() {
         Tile.DEEP_SPRITE = DEEP;
@@ -38,7 +39,7 @@ public class MapManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            layout.getBuilding((int)GridPosition().x, (int)GridPosition().y, currentBuilding);
+            layout.setBuilding((int)GridPosition().x, (int)GridPosition().y, currentBuilding);
         }
     }
 
@@ -47,9 +48,12 @@ public class MapManager : MonoBehaviour
         Vector3 v3 = Input.mousePosition;
         v3.z = 10.0F;
         v3 = Camera.main.ScreenToWorldPoint(v3);
+        v3.x = ((v3.x + 0.5F) >= 0 ? (int)(v3.x + 0.5F) : -1);
+        v3.y = ((v3.y + 0.5F) >= 0 ? (int)(v3.y + 0.5F) : -1);
 
-        return new Vector2((int) (v3.x + 0.5F), (int)(v3.y + 0.5F));
+        return new Vector2(v3.x, v3.y);
     }
+
     private class Grid {
         private const Tile.TileType G = Tile.TileType.GRASS;
         private const Tile.TileType D = Tile.TileType.DEEP;
@@ -97,7 +101,12 @@ public class MapManager : MonoBehaviour
             Tile.createGameTile(row, col, createdTile);
         }
 
-       public GameObject getBuilding(int row, int col, string bType) {
+       public void setBuilding(int row, int col, string bType) {
+            if (row < 0 || col < 0 || row > 9 || col > 9)
+                return;
+
+            Debug.Log(row + ":" + col);
+
             switch (bType) {
                 case "F":
                     Instantiate(buildings[0], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
@@ -112,7 +121,6 @@ public class MapManager : MonoBehaviour
                     Instantiate(buildings[3], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
                     break;
             }
-            return null;
         }
     }
 
