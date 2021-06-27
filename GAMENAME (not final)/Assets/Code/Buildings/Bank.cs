@@ -6,6 +6,7 @@ public class Bank : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
+    public static GameObject SPRITE;
     public Bank(Tile.TileType tile) {
         this.tile = tile;
         hp = 7;

@@ -6,6 +6,8 @@ public class Mine : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
+    public static GameObject SPRITE;
+
     public Mine(Tile.TileType tile)
     {
         this.tile = tile;

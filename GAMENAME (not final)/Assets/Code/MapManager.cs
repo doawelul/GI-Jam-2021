@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
+    private const int STARTING_GOLD = 20;
+    private const int STARTING_FOOD = 3;
+    private const int STARTING_STONE = 10;
     public GameOverReason endReason;
     private static string currentBuilding;
 
@@ -28,7 +31,12 @@ public class MapManager : MonoBehaviour
     public GameObject GRASS;
     public GameObject SAND;
 
-    public GameObject[] buildings;
+    // building sprites.
+    public GameObject BANK;
+    public GameObject CASTLE;
+    public GameObject FARM;
+    public GameObject MINE;
+    public GameObject ROAD;
     public Text[] resourceAmounts;
     public MapData level;
 
@@ -36,15 +44,15 @@ public class MapManager : MonoBehaviour
     {
         currentBuilding = "C";
 
-        gold = 20;
-        food = 3;
-        stone = 10;
+        initializeResources();
 
         SetText();
 
+        loadBuildingSprites();
+
         loadTileSprites();
 
-        layout = new Grid(level.mapName, buildings);
+        layout = new Grid(level.mapName);
     }
 
     private void Update()
@@ -66,6 +74,20 @@ public class MapManager : MonoBehaviour
         Tile.ROCK_SPRITE = ROCK;
         Tile.GRASS_SPRITE = GRASS;
         Tile.SAND_SPRITE = SAND;
+    }
+
+    private void loadBuildingSprites() {
+        Bank.SPRITE = BANK;
+        Castle.SPRITE = CASTLE;
+        Farm.SPRITE = FARM;
+        Mine.SPRITE = MINE;
+        Road.SPRITE = ROAD;
+    }
+
+    private void initializeResources() {
+        gold = STARTING_GOLD;
+        food = STARTING_FOOD;
+        stone = STARTING_STONE;
     }
 
     private Vector2 GridPosition()
@@ -150,13 +172,8 @@ public class MapManager : MonoBehaviour
 
         private Tile[,] gridData = new Tile[ROW, COL];
 
-
-        private GameObject[] buildings;
-
-
-        public Grid(string map, GameObject[] g)
+        public Grid(string map)
         {
-            buildings = g;
 
             string[] temp = File.ReadAllText("Assets/Maps/" + map + ".txt").Split('\n');
             Debug.Log(temp[9].ToCharArray()[9]);
@@ -219,24 +236,24 @@ public class MapManager : MonoBehaviour
             switch (currentBuilding)
             {
                 case "F":
-                    temp = Instantiate(buildings[0], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setFarm(temp);
+                    temp = Instantiate(Farm.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    gridData[row, col].setFarm();
                     break;
                 case "R":
-                    temp = Instantiate(buildings[1], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setRoad(temp);
+                    temp = Instantiate(Road.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    gridData[row, col].setRoad();
                     break;
                 case "M":
-                    temp = Instantiate(buildings[2], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setMine(temp);
+                    temp = Instantiate(Mine.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    gridData[row, col].setMine();
                     break;
                 case "B":
-                    temp = Instantiate(buildings[3], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setBank(temp);
+                    temp = Instantiate(Bank.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    gridData[row, col].setBank();
                     break;
                 case "C":
-                    temp = Instantiate(buildings[4], new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setCastle(temp);
+                    temp = Instantiate(Castle.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+                    gridData[row, col].setCastle();
                     currentBuilding = "";
                     break;
                 case "":

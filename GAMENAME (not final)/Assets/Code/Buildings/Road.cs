@@ -6,6 +6,8 @@ public class Road : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
+    public static GameObject SPRITE;
+
     public Road(Tile.TileType tile)
     {
         this.tile = tile;

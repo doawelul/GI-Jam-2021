@@ -6,6 +6,8 @@ public class Farm : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
+    public static GameObject SPRITE;
+
     public Farm(Tile.TileType tile)
     {
         this.tile = tile;

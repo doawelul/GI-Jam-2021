@@ -13,7 +13,6 @@ public class Tile : MonoBehaviour
         SAND
     }
 
-    public static bool SPRITES_LOADED = false;
     public static GameObject DEEP_SPRITE;
     public static GameObject WATER_SPRITE;
     public static GameObject ROCK_SPRITE;
@@ -23,7 +22,6 @@ public class Tile : MonoBehaviour
     private TileType groundType;
     private Building buildingType;
     private GameObject tileSprite;
-    private GameObject buildingSprite;
 
     public Tile(TileType type)
     {
@@ -72,34 +70,29 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public void setFarm(GameObject g)
+    public void setFarm()
     {
         buildingType = new Farm(groundType);
-        buildingSprite = g;
     }
 
-    public void setCastle(GameObject g)
+    public void setCastle()
     {
         buildingType = new Castle(groundType);
-        buildingSprite = g;
     }
 
-    public void setBank(GameObject g)
+    public void setBank()
     {
         buildingType = new Bank(groundType);
-        buildingSprite = g;
     }
 
-    public void setMine(GameObject g)
+    public void setMine()
     {
         buildingType = new Mine(groundType);
-        buildingSprite = g;
     }
 
-    public void setRoad(GameObject g)
+    public void setRoad()
     {
         this.buildingType = new Road(groundType);
-        buildingSprite = g;
     }
 
     public int GetGoldChange()

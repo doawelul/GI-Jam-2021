@@ -6,6 +6,8 @@ public class Castle : Building
 {
     private int hp;
     private readonly Tile.TileType tile;
+    public static GameObject SPRITE;
+
     public Castle(Tile.TileType tile)
     {
         this.tile = tile;
