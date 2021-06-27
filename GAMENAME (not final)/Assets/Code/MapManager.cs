@@ -12,7 +12,10 @@ public class MapManager : MonoBehaviour
     private const int STARTING_FOOD = 3;
     private const int STARTING_STONE = 10;
     public GameOverReason endReason;
-    private static string currentBuilding;
+
+    private static Action<Tile> queuedBuilding;
+    private static GameObject queuedSprite;
+    private static bool castleBuilt;
 
     private Grid layout;
 
@@ -42,8 +45,6 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
-        currentBuilding = "C";
-
         initializeResources();
 
         SetText();
@@ -51,6 +52,10 @@ public class MapManager : MonoBehaviour
         loadBuildingSprites();
 
         loadTileSprites();
+
+        castleBuilt = false;
+        queuedBuilding = x => x.setCastle();
+        queuedSprite = Castle.SPRITE;
 
         layout = new Grid(level.mapName);
     }
@@ -114,12 +119,28 @@ public class MapManager : MonoBehaviour
         resourceAmounts[2].text = "Stone: " + stone + " (" + stoneChange + ")";
     }
 
-    public void buttonSelect(string type)
-    {
-        if (currentBuilding == "C")
-            return;
+    public void clickFarm() {
+        if(!castleBuilt) return;
+        queuedBuilding = x => x.setFarm();
+        queuedSprite = Farm.SPRITE;
+    }
 
-        currentBuilding = type;
+    public void clickBank() {
+        if(!castleBuilt) return;
+        queuedBuilding = x => x.setBank();
+        queuedSprite = Bank.SPRITE;
+    }
+
+    public void clickMine() {
+        if(!castleBuilt) return;
+        queuedBuilding = x => x.setMine();
+        queuedSprite = Mine.SPRITE;
+    }
+
+    public void clickRoad() {
+        if(!castleBuilt) return;
+        queuedBuilding = x => x.setRoad();
+        queuedSprite = Road.SPRITE;
     }
 
     public void BuildUnit(string type)
@@ -222,7 +243,7 @@ public class MapManager : MonoBehaviour
             if (row < 0 || col < 0 || row > 9 || col > 9 || gridData[row, col].getBuilding() != null)
                 return;
 
-            if (currentBuilding != "C" && !SearchAdjacent(row, col))
+            if (castleBuilt && !SearchAdjacent(row, col))
                 return;
 
             if (stone < 2)
@@ -231,33 +252,14 @@ public class MapManager : MonoBehaviour
             if (!gridData[row, col].CanBuild())
                 return;
 
-            GameObject temp;
+            if(queuedBuilding == null) return;
 
-            switch (currentBuilding)
-            {
-                case "F":
-                    temp = Instantiate(Farm.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setFarm();
-                    break;
-                case "R":
-                    temp = Instantiate(Road.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setRoad();
-                    break;
-                case "M":
-                    temp = Instantiate(Mine.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setMine();
-                    break;
-                case "B":
-                    temp = Instantiate(Bank.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setBank();
-                    break;
-                case "C":
-                    temp = Instantiate(Castle.SPRITE, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
-                    gridData[row, col].setCastle();
-                    currentBuilding = "";
-                    break;
-                case "":
-                    return;
+            queuedBuilding(gridData[row, col]);
+            Instantiate(queuedSprite, new Vector2(row, col), new Quaternion(0, 0, 0, 0));
+            if(!castleBuilt) {
+                castleBuilt = true;
+                queuedSprite = null;
+                queuedBuilding = null;
             }
 
             stone -= 2;
